@@ -1,4 +1,4 @@
-package com.tnc.msscbeerservice.model;
+package com.tnc.msscbeerservice.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

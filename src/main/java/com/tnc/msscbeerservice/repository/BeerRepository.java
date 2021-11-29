@@ -1,5 +1,6 @@
-package com.tnc.msscbeerservice.model;
+package com.tnc.msscbeerservice.repository;
 
+import com.tnc.msscbeerservice.domain.Beer;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.UUID;
