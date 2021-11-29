@@ -44,9 +44,9 @@ class BeerControllerTest {
 
     }
 
-//    @SneakyThrows
+    @SneakyThrows
     @Test
-    void updateBeer() throws Exception {
+    void updateBeer() {
 
         var beerDto = new BeerDto();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
