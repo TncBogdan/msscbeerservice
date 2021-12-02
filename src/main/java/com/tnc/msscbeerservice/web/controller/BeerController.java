@@ -18,7 +18,7 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 public class BeerController {
 
-    private BeerService beerService;
+    private final BeerService beerService;
 
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID id){

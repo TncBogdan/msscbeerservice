@@ -12,8 +12,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
 
-    BeerRepository beerRepository;
-    BeerMapper beerMapper;
+    private final BeerRepository beerRepository;
+    private final BeerMapper beerMapper;
 
     @Override
     public BeerDto getById(UUID id) {

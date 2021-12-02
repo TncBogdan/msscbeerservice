@@ -1,33 +1,39 @@
 package com.tnc.msscbeerservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tnc.msscbeerservice.service.BeerService;
 import com.tnc.msscbeerservice.web.model.BeerDto;
 import com.tnc.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.SneakyThrows;
+import org.json.JSONString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static com.tnc.msscbeerservice.bootstrap.BeerLoader.BEER_1_UPC;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(BeerController.class)
 class BeerControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
     ObjectMapper objectMapper;
 
-    @Test
-    void getBeer() throws Exception {
+    @MockBean
+    BeerService beerService;
 
+    @Test
+    void getBeerById() throws Exception {
         mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID())
                         .accept(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -35,6 +41,7 @@ class BeerControllerTest {
 
     @Test
     void saveBeer() throws Exception {
+
         var beerDto = getValidBeer();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
         mockMvc.perform(post("/api/v1/beer/")
@@ -60,7 +67,7 @@ class BeerControllerTest {
                 .beerName("My Beer")
                 .beerStyle(BeerStyleEnum.ALE)
                 .price(new BigDecimal("2.93"))
-                .upc(235457534645643L)
+                .upc(BEER_1_UPC)
                 .build();
     }
 }
