@@ -27,7 +27,7 @@ public class Beer {
     private Long version;
     @CreationTimestamp
     @Column(updatable = false)
-    private Timestamp createDate;
+    private Timestamp createdDate;
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
     private String beerName;
